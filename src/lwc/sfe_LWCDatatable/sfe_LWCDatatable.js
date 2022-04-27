@@ -23,9 +23,9 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
     label = {
         errorTitle : 'Error',
         successfulTitle : 'Success',
-        recentlyViewed : 'recentlyViewed',
-        searchThisList : 'searchThisList',
-        newLabel : 'newLabel'
+        recentlyViewed : 'Recently Viewed',
+        searchThisList : 'Search this list...',
+        newLabel : 'New'
     };
 
     @track isLoading = false;
