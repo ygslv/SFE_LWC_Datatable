@@ -36,6 +36,7 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
     @api objectApiName;
     @track recToReturn = 25;
     @track objectLabel;
+    @track iconName = 'standard:';
 
     @track data;
     @track columns;
@@ -58,6 +59,7 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
     connectedCallback() {
 
         this.isLoading = true;
+        this.iconName += this.objectApiName.toLowerCase();
 
         getObjectLabel({objectName: this.objectApiName})
             .then(data => this.objectLabel = data)
