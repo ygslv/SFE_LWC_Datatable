@@ -1,0 +1,78 @@
+<template>
+    <div class="spinner">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+            </lightning-spinner>
+        </template>
+    </div>
+    <div class="slds-page-header slds-page-header_joined">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                      <span class="slds-icon_container slds-icon-standard-opportunity">
+                        <svg class="slds-icon slds-page-header__icon" aria-hidden="true">
+                          <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#opportunity"></use>
+                        </svg>
+                      </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span>{objectLabel}</span>
+                                    <span class="slds-page-header__title slds-truncate" title="Recently Viewed">{label.recentlyViewed}</span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header__col-actions">
+                <div class="slds-page-header__controls">
+                    <div class="slds-page-header__control">
+                        <ul class="slds-button-group-list">
+                            <li>
+                                <button
+                                        class="slds-button slds-button_neutral"
+                                        name="new-record"
+                                        onclick={createNewRecord}>
+                                    {label.newLabel}
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-meta">
+                <p class="slds-page-header__meta-text"> {currentNumOfRecords} / {totalNumOfRecords} items • Updated at {lastModifiedDate}</p>
+            </div>
+            <div class="slds-page-header__col-controls">
+                <div class="slds-page-header__controls">
+                    <div class="slds-page-header__control">
+                        <lightning-input type="search" value={searchKey} onchange={doSearchingData} placeholder={label.searchThisList}></lightning-input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 75vh; " class="slds-col slds-size_1-of-1">
+        <lightning-datatable
+                key-field="Id"
+                data={data}
+                columns={columns}
+                hide-checkbox-column="true"
+                enable-infinite-loading="true"
+                onloadmore={doLoadingData}
+                load-more-offset = "20"
+                onrowaction={handleRowAction}
+                min-column-width = "200"
+                max-column-width = "500"
+                sorted-by={sortedBy}
+                sorted-direction={sortedDirection}
+                onsort={doSortingData}>
+        </lightning-datatable>
+    </div>
+</template>

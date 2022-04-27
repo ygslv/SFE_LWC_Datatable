@@ -1,0 +1,4 @@
+<aura:component access="global" implements="flexipage:availableForAllPageTypes,force:appHostable,force:hasSObjectName,lightning:actionOverride" description="This Aura component used to display LWC Datatable on the object's records list view tab">
+    <aura:attribute name="objectApiName" type="String" default="{!v.sObjectName}"/>
+    <c:sfe_LWCDatatable objectApiName="{!v.objectApiName}"/>
+</aura:component>

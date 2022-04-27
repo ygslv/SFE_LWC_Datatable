@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <description>A table that can be filtered, sorted, or exported in CSV format</description>
+    <isExposed>false</isExposed>
+    <masterLabel>Sfe Lwc Datatable</masterLabel>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="objectApiName" type="String" label="Object API Name"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
