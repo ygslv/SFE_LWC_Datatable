@@ -1,0 +1,11 @@
+.sfe_lightning-datatable {
+    height: 65vh;
+}
+
+.slds-table_header-fixed_container, .slds-table--header-fixed_container {
+    background-color: white;
+}
+
+.slds-card__body {
+    margin-top: 0;
+}
