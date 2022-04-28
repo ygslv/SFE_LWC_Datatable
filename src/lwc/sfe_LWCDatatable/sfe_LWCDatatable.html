@@ -7,9 +7,34 @@
         </template>
     </div>
 
+    <c-sfe_-dynamic-modal modal-header={label.modalHeader} show-modal={isFilterModalOpen} onclosedialog={handleFilterCancel}>
+        <span slot="content">
+            <c-sfe_-report-filter/>
+        </span>
+        <span slot="footer">
+            <button
+                    class="slds-button slds-button_neutral"
+                    data-name="clear-filters"
+                    onclick={handleFilterClear}>
+                    {label.clearFilter}
+            </button>
+            <button
+                    class="slds-button slds-button_brand"
+                    data-name="cancel-filters"
+                    onclick={handleFilterCancel}>
+                    {label.cancel}
+            </button>
+            <button
+                    class="slds-button slds-button_brand"
+                    data-name="save-filters"
+                    onclick={handleFilterSave}>
+                    {label.save}
+            </button>
+        </span>
+    </c-sfe_-dynamic-modal>
+
     <div class="slds-page-header slds-m-bottom_small">
         <div class="slds-grid slds-m-bottom_small">
-
             <div class="slds-col slds-has-flexi-truncate">
                 <div class="slds-media slds-no-space slds-grow">
                     <div class="slds-media__figure">
@@ -36,7 +61,7 @@
             <div class="slds-col slds-align-bottom">
                 <lightning-button-icon class="slds-m-left_xx-small" icon-name="utility:search" variant="brand" alternative-text="Search" title="Search" onclick={doSearchingData}></lightning-button-icon>
                 <lightning-button-icon class="slds-m-left_xx-small" icon-name="utility:refresh" alternative-text="Refresh" title="Refresh" onclick={handleRefreshButtonClick}></lightning-button-icon>
-                <lightning-button-icon class="slds-m-left_xx-small" icon-name="utility:filterList" alternative-text="Filter" title="Filter"></lightning-button-icon>
+                <lightning-button-icon class="slds-m-left_xx-small" icon-name="utility:filterList" alternative-text="Filter" title="Filter" onclick={handleFilterButtonClick}></lightning-button-icon>
             </div>
             <div class="slds-col slds-no-flex slds-grid slds-align-top">
                 <div class="slds-button-group" role="group">

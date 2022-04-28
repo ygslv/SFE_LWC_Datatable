@@ -55,6 +55,7 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
     @track sortedBy = 'Id';
     @track sortedDirection = 'asc';
 
+    @track isFilterModalOpen = false;
 
     connectedCallback() {
 
@@ -141,6 +142,10 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
     handleRefreshButtonClick() {
         this.searchKey = '';
         this.doSearchingData();
+    }
+
+    handleFilterButtonClick() {
+        this.isFilterModalOpen = true;
     }
 
     handleEnter(event) {
@@ -251,5 +256,17 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
 
     showSuccessToast(message) {
         this.showToast(this.label.successfulTitle, message , 'Success');
+    }
+
+    handleFilterSave(event) {
+        this.isFilterModalOpen = false;
+    }
+
+    handleFilterCancel(event) {
+        this.isFilterModalOpen = false;
+    }
+
+    handleFilterClear(event) {
+        this.isFilterModalOpen = false;
     }
 }
