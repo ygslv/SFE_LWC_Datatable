@@ -7,6 +7,8 @@
     <types>
         <members>Account</members>
         <members>Contact</members>
+        <members>Report_Filter__c</members>
+        <members>Report_Saved_Filter__c</members>
         <name>CustomObject</name>
     </types>
     <types>
