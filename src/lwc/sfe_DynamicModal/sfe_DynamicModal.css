@@ -1,0 +1,4 @@
+.slds-modal__content {
+    max-height: 70rem;
+    min-height: 40rem;
+}
