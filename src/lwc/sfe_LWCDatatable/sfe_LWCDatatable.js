@@ -25,7 +25,12 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
         successfulTitle : 'Success',
         recentlyViewed : 'Recently Viewed',
         searchThisList : 'Search this list...',
-        newLabel : 'New'
+        newLabel : 'New',
+        modalHeader : 'Filter',
+        clearFilter: 'Clear Filters',
+        cancel: 'Cancel',
+        save: 'Save',
+        export: 'Export',
     };
 
     @track isLoading = false;
