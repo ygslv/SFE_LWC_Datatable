@@ -125,14 +125,28 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
         this.handleDataLoad();
     }
 
-    doSearchingData(event) {
+    doSearchingData() {
         this.data = [];
         this.isLoading = true;
         this.isFirstLoad = true;
         this.lastTableRowId = undefined;
-        this.searchKey = event.target.value;
         this.isFiltered = this.searchKey.length !== 0;
         this.handleDataLoad();
+    }
+
+    handleSearchKeyChange(event) {
+        this.searchKey = event.target.value;
+    }
+
+    handleRefreshButtonClick() {
+        this.searchKey = '';
+        this.doSearchingData();
+    }
+
+    handleEnter(event) {
+        if(event.keyCode === 13){
+            this.doSearchingData();
+        }
     }
 
     doSortingData(event) {

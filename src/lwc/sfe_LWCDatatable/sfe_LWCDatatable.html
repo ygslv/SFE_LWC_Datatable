@@ -23,12 +23,20 @@
             </div>
         </div>
         <div class="slds-grid">
-            <div class="slds-col slds-size_1-of-6 slds-align-bottom">
-                <lightning-input label='Search' type="search" value={searchKey} onchange={doSearchingData} placeholder={label.searchThisList} variant="label-hidden"></lightning-input>
+            <div class="slds-col slds-size_1-of-5 slds-align-bottom">
+                <lightning-input
+                        label='Search'
+                        value={searchKey}
+                        onchange={handleSearchKeyChange}
+                        onkeypress={handleEnter}
+                        placeholder={label.searchThisList}
+                        variant="label-hidden">
+                </lightning-input>
             </div>
             <div class="slds-col slds-align-bottom">
+                <lightning-button-icon class="slds-m-left_xx-small" icon-name="utility:search" variant="brand" alternative-text="Search" title="Search" onclick={doSearchingData}></lightning-button-icon>
+                <lightning-button-icon class="slds-m-left_xx-small" icon-name="utility:refresh" alternative-text="Refresh" title="Refresh" onclick={handleRefreshButtonClick}></lightning-button-icon>
                 <lightning-button-icon class="slds-m-left_xx-small" icon-name="utility:filterList" alternative-text="Filter" title="Filter"></lightning-button-icon>
-                <lightning-button-icon class="slds-m-left_xx-small" icon-name="utility:refresh" alternative-text="Refresh" title="Refresh"></lightning-button-icon>
             </div>
             <div class="slds-col slds-no-flex slds-grid slds-align-top">
                 <div class="slds-button-group" role="group">
@@ -70,7 +78,7 @@
         <footer class="slds-card__footer">
             <div class="slds-grid">
                 <div class="slds-col">
-                    <p>{currentNumOfRecords} / {totalNumOfRecords} items </p>
+                    <p class="slds-text-title_bold">{currentNumOfRecords} / {totalNumOfRecords}</p>
                 </div>
             </div>
         </footer>
