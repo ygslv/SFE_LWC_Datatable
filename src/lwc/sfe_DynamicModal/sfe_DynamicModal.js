@@ -4,6 +4,7 @@ export default class SfeDynamicModal extends LightningElement {
 
     @api modalHeader;
     @api showModal = false;
+    @api showCloseIcon = false;
     @api show() {this.showModal = true}
     @api hide() {this.showModal = false}
 
