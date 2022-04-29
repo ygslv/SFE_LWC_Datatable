@@ -23,5 +23,9 @@
         <members>*</members>
         <name>AuraDefinitionBundle</name>
     </types>
+    <types>
+        <members>ReportFilterTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
     <version>54.0</version>
 </Package>
