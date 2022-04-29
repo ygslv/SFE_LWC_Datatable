@@ -5,6 +5,11 @@ public class ReportFilterTriggerHandler {
         areObjectAndFieldEnteredCorrectly(reportFilterList);
     }
 
+    public static void onBeforeUpdate(List<Report_Filter__c> reportFilterList) {
+
+        areObjectAndFieldEnteredCorrectly(reportFilterList);
+    }
+
     public static void areObjectAndFieldEnteredCorrectly(List<Report_Filter__c> reportFilterList) {
 
         Map<String, Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();

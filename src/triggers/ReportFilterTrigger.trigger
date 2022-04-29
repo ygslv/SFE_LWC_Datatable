@@ -2,6 +2,8 @@ trigger ReportFilterTrigger on Report_Filter__c (before insert, before update, a
     if (Trigger.isBefore) {
         if (Trigger.isInsert) {
             ReportFilterTriggerHandler.onBeforeInsert(Trigger.new);
+        } else if (Trigger.isUpdate) {
+            ReportFilterTriggerHandler.onBeforeUpdate(Trigger.new);
         }
     }
 }
