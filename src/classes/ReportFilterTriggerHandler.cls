@@ -68,7 +68,7 @@ public class ReportFilterTriggerHandler {
      * @return Boolean instance
      */
     public static Boolean isFieldRequired(DescribeFieldResult describeFieldResult) {
-        return describeFieldResult.isNillable();
+        return !describeFieldResult.isNillable();
     }
 
     /**
