@@ -33,7 +33,10 @@ public class ReportFilterTriggerHandler {
             } else if (!isFieldNameCorrect(reportFilter)){
                 reportFilter.Field_Name__c.addError('Such a field name does not exist for chosen object');
             } else {
-                reportFilter.Field_Type__c = getFieldType(reportFilter);
+                DescribeFieldResult describeFieldResult = GLOBAL_DESCRIBE.get(reportFilter.Object_Name__c).getDescribe().fields.getMap().get(reportFilter.Field_Name__c).getDescribe();
+                reportFilter.Field_Type__c = getFieldType(describeFieldResult);
+                reportFilter.Field_Label__c = getFieldLabel(describeFieldResult);
+                reportFilter.Is_Field_Required__c = isFieldRequired(describeFieldResult);
                 reportFilter.Name = generateReportFilterName(reportFilter.Object_Name__c, reportFilter.Field_Name__c);
             }
         }
@@ -60,13 +63,30 @@ public class ReportFilterTriggerHandler {
     }
 
     /**
+     * @description Checking if entered field is set as required
+     * @param describeFieldResult (DescribeFieldResult): describe field based on Object Name and Field Name
+     * @return Boolean instance
+     */
+    public static Boolean isFieldRequired(DescribeFieldResult describeFieldResult) {
+        return describeFieldResult.isNillable();
+    }
+
+    /**
      * @description Get field type for current Report_Filter__c instance (Based on Object and Field names)
-     * @param reportFilter (Report_Filter__c): Report_Filter__c instance
+     * @param describeFieldResult (DescribeFieldResult): describe field based on Object Name and Field Name
      * @return String instance
      */
-    public static String getFieldType (Report_Filter__c reportFilter) {
-        DescribeFieldResult describeFieldResult = GLOBAL_DESCRIBE.get(reportFilter.Object_Name__c).getDescribe().fields.getMap().get(reportFilter.Field_Name__c).getDescribe();
+    public static String getFieldType(DescribeFieldResult describeFieldResult) {
         return String.valueOf(describeFieldResult.getType()).toLowerCase().capitalize();
+    }
+
+    /**
+     * @description Get field label for current Report_Filter__c instance (Based on Object and Field names)
+     * @param describeFieldResult (DescribeFieldResult): describe field based on Object Name and Field Name
+     * @return String instance
+     */
+    public static String getFieldLabel(DescribeFieldResult describeFieldResult) {
+        return describeFieldResult.getLabel();
     }
 
     /**
