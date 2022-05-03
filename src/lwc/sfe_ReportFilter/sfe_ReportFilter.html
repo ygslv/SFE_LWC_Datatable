@@ -1,2 +1,53 @@
 <template>
+    <template for:each={reportFilterData.date} for:item="date">
+        <lightning-input
+                key={date.fieldName}
+                name={date.fieldName}
+                label={date.fieldLabel}
+                type="date"
+                value={date.value}
+                onchange={handleFilterChange}>
+        </lightning-input>
+    </template>
+    <template for:each={reportFilterData.string} for:item="string">
+        <lightning-input
+                key={string.fieldName}
+                name={string.fieldName}
+                label={string.fieldLabel}
+                type="text"
+                value={string.value}
+                onchange={handleFilterChange}>
+        </lightning-input>
+    </template>
+    <template for:each={reportFilterData.picklist} for:item="picklist">
+        <lightning-combobox
+                key={picklist.fieldName}
+                name={picklist.fieldName}
+                label={picklist.fieldLabel}
+                value={picklist.value}
+                placeholder="Select the value"
+                options={picklist.options}
+                onchange={handleFilterChange}>
+        </lightning-combobox>
+    </template>
+    <template for:each={reportFilterData.boolean} for:item="boolean">
+        <lightning-checkbox-group
+                key={boolean.fieldName}
+                name={boolean.fieldName}
+                options={boolean.options}
+                value={boolean.value}
+                onchange={handleFilterChange}>
+        </lightning-checkbox-group>
+    </template>
+    <lightning-record-edit-form object-api-name={objectApiName} id="createContactForm" >
+        <template for:each={reportFilterData.reference} for:item="reference">
+            <lightning-input-field
+                    key={reference.fieldName}
+                    field-name={reference.fieldName}
+                    value={reference.value}
+                    variant="label-hidden"
+                    onchange={handleFilterChange}>
+            </lightning-input-field>
+        </template>
+    </lightning-record-edit-form>
 </template>
