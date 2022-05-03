@@ -7,6 +7,8 @@ import getColumns from '@salesforce/apex/SFE_LWCDatatableController.getColumns';
 import handleDataLoad from '@salesforce/apex/SFE_LWCDatatableController.handleDataLoad';
 import deleteRowRecord from '@salesforce/apex/SFE_LWCDatatableController.deleteRowRecord';
 
+import getReportFilterData from '@salesforce/apex/SFE_ReportFilterController.getReportFilterData';
+
 const actions = [
     { label: 'View Record', name: 'view_record' },
     { label: 'Edit', name: 'edit' },
@@ -61,6 +63,8 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
     @track sortedDirection = 'asc';
 
     @track isFilterModalOpen = false;
+    @track reportFilterData = {};
+    @track reportFilterDataCopy = {};
 
     connectedCallback() {
 
@@ -90,6 +94,22 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
         } else if (error) {
 
             this.isLoading = false;
+            this.showErrorToast(error.body.message);
+        }
+    }
+
+    @wire(getReportFilterData, ({objectName:'$objectApiName'}))
+    getReportFilterDataCallback({error, data}){
+
+        if(data) {
+            data.forEach(data => {
+                console.log(data.options);
+                Object.keys(this.reportFilterData).includes(data.fieldType.toLowerCase()) ?
+                    this.reportFilterData[data.fieldType.toLowerCase()].push(data) :
+                    this.reportFilterData[data.fieldType.toLowerCase()] = [data];
+            });
+            this.reportFilterDataCopy = JSON.parse(JSON.stringify(this.reportFilterData));
+        } else if (error) {
             this.showErrorToast(error.body.message);
         }
     }
