@@ -7,6 +7,8 @@ public class SFE_ReportFilterController {
         //Map<String, List<String>> reportSavedFilterValueMap = getReportSavedFilterValueMap(objectName);
         Map<String, List<ReportFilterOption>> reportFilterOptionMap = SFE_ReportFilterHelper.generateReportFilterOptionMap(reportFilterList);
         List<ReportFilterData> reportFilterDataList = new List<ReportFilterData>();
+        Metadata.Layout layout = SFE_ReportFilterHelper.getPageLayout(objectName);
+        Map<String, String> fieldToSectionMap = SFE_ReportFilterHelper.generateFieldToSectionMap(layout);
 
         for (Report_Filter__c reportFilter : reportFilterList) {
             reportFilterDataList.add(new ReportFilterData(
@@ -17,7 +19,7 @@ public class SFE_ReportFilterController {
                     new List<String>(),
                     reportFilterOptionMap.get(reportFilter.Field_Name__c),
                     reportFilter.Is_Field_Required__c,
-                    'Test section'
+                    fieldToSectionMap.get(reportFilter.Field_Name__c)
             ));
         }
 

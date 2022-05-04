@@ -97,4 +97,21 @@ public class SFE_ReportFilterHelper {
         }
 
     }
+
+    public static Map<String, String> generateFieldToSectionMap(Metadata.Layout layout) {
+
+        Map<String, String> sectionToFieldListMap = new Map<String, String>();
+
+        for (Metadata.LayoutSection section : layout.layoutSections) {
+            for (Metadata.LayoutColumn column : section.layoutColumns) {
+                if (column.layoutItems != null) {
+                    for (Metadata.LayoutItem item : column.layoutItems) {
+                        sectionToFieldListMap.put(String.valueOf(item.field), String.valueOf(section.label));
+                    }
+                }
+            }
+        }
+
+        return sectionToFieldListMap;
+    }
 }
