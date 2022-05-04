@@ -13,10 +13,10 @@ public class SFE_ReportFilterHelper {
                 for (String value : picklistValues) {
                     options.add(new SFE_ReportFilterController.ReportFilterOption(value));
                 }
-                reportFilterOptionMap.put(reportFilter.Field_Name__c, options);
             } else {
                 options.add(new SFE_ReportFilterController.ReportFilterOption(reportFilter.Field_Label__c));
             }
+            reportFilterOptionMap.put(reportFilter.Field_Name__c, options);
         }
 
         return reportFilterOptionMap;
