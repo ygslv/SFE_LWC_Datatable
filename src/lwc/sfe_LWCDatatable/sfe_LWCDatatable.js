@@ -65,6 +65,7 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
     @track isFilterModalOpen = false;
     @track reportFilterData = {};
     @track reportFilterDataCopy = {};
+    @track reportFilterSection = {};
 
     connectedCallback() {
 
@@ -103,7 +104,10 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
 
         if(data) {
             data.forEach(data => {
-                console.log(data.options);
+                let currentSection = data.section;
+                if (!this.sections.includes(currentSection)) this.sections.push(currentSection);
+
+                console.log('data: ', data);
                 Object.keys(this.reportFilterData).includes(data.fieldType.toLowerCase()) ?
                     this.reportFilterData[data.fieldType.toLowerCase()].push(data) :
                     this.reportFilterData[data.fieldType.toLowerCase()] = [data];

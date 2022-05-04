@@ -1,5 +1,5 @@
 <template>
-    <template for:each={reportFilterData.date} for:item="elem">
+    <template for:each={reportFilterSectionData.date} for:item="elem">
         <c-sfe-required-label
                 key={elem.fieldName}
                 required={elem.required}
@@ -15,7 +15,7 @@
                 variant="label-hidden">
         </lightning-input>
     </template>
-    <template for:each={reportFilterData.string} for:item="elem">
+    <template for:each={reportFilterSectionData.string} for:item="elem">
         <c-sfe-required-label
                 key={elem.fieldName}
                 required={elem.required}
@@ -31,7 +31,7 @@
                 variant="label-hidden">
         </lightning-input>
     </template>
-    <template for:each={reportFilterData.picklist} for:item="elem">
+    <template for:each={reportFilterSectionData.picklist} for:item="elem">
         <c-sfe-required-label
                 key={elem.fieldName}
                 required={elem.required}
@@ -48,7 +48,7 @@
                 variant="label-hidden">
         </lightning-combobox>
     </template>
-    <template for:each={reportFilterData.boolean} for:item="elem">
+    <template for:each={reportFilterSectionData.boolean} for:item="elem">
         <c-sfe-required-label
                 key={elem.fieldName}
                 required={elem.required}
@@ -64,7 +64,7 @@
         </lightning-checkbox-group>
     </template>
     <lightning-record-edit-form object-api-name={objectApiName} id="createContactForm" >
-        <template for:each={reportFilterData.reference} for:item="elem">
+        <template for:each={reportFilterSectionData.reference} for:item="elem">
             <c-sfe-required-label
                     key={elem.fieldName}
                     required={elem.required}
