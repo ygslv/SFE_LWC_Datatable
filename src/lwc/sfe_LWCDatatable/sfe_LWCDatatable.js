@@ -99,6 +99,8 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
         }
     }
 
+    @track sections = [];
+
     @wire(getReportFilterData, ({objectName:'$objectApiName'}))
     getReportFilterDataCallback({error, data}){
 
