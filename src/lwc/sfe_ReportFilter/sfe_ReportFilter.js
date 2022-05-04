@@ -2,25 +2,39 @@ import {LightningElement, api, track} from 'lwc';
 
 export default class SfeReportFilter extends LightningElement {
 
-    @api objectApiName
+    @api objectApiName;
+    @api section;
     @api reportFilterData;
-    @track reportFilterDataChild;
+    @track reportFilterSectionData = {};
 
     connectedCallback() {
-        this.reportFilterDataChild = JSON.parse(JSON.stringify(this.reportFilterData));
+        this.generateReportFilterSectionData();
     }
 
     handleFilterChange(event) {
 
-        Object.keys(this.reportFilterDataChild).some(prop => {
+        Object.keys(this.reportFilterSectionData).some(prop => {
             const fieldName = event.target.name ? event.target.name : event.target.fieldName;
-            const targetElement = this.reportFilterDataChild[prop].find(elem => elem.fieldName === fieldName);
+            const targetElement = this.reportFilterSectionData[prop].find(elem => elem.fieldName === fieldName);
             if (targetElement) {
                 targetElement.value = event.detail.value;
                 return true;
             }
         });
 
-        this.dispatchEvent(new CustomEvent("filtervaluechange", {detail: this.reportFilterDataChild}));
+        this.dispatchEvent(new CustomEvent("filtervaluechange", {detail: this.reportFilterSectionData}));
+    }
+
+    generateReportFilterSectionData() {
+        debugger;
+        Object.keys(this.reportFilterData).forEach(type => {
+            this.reportFilterData[type].forEach(field => {
+                if (field.section === this.section) {
+                    Object.keys(this.reportFilterSectionData).includes(type) ?
+                        this.reportFilterSectionData[type].push(field) :
+                        this.reportFilterSectionData[type] = [field]
+                }
+            })
+        })
     }
 }
