@@ -9,7 +9,10 @@
 
     <c-sfe_-dynamic-modal modal-header={label.modalHeader} show-modal={isFilterModalOpen} onclosedialog={handleFilterCancel}>
         <span slot="content">
-            <c-sfe_-report-filter report-filter-data={reportFilterData}></c-sfe_-report-filter>
+            <c-sfe_-report-filter
+                    report-filter-data={reportFilterData}
+                    onfiltervaluechange={handleFilterValueChange}>
+            </c-sfe_-report-filter>
         </span>
         <span slot="footer">
             <button

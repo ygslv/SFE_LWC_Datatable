@@ -283,6 +283,10 @@ export default class SfeLwcDatatable extends NavigationMixin(LightningElement) {
         this.showToast(this.label.successfulTitle, message , 'Success');
     }
 
+    handleFilterValueChange(event) {
+        this.reportFilterData = event.detail;
+    }
+
     handleFilterSave(event) {
         this.isFilterModalOpen = false;
     }
