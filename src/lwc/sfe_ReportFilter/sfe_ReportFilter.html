@@ -1,50 +1,79 @@
 <template>
-    <template for:each={reportFilterData.date} for:item="date">
+    <template for:each={reportFilterData.date} for:item="elem">
+        <c-sfe-required-label
+                key={elem.fieldName}
+                required={elem.required}
+                field-label={elem.fieldLabel}>
+        </c-sfe-required-label>
         <lightning-input
-                key={date.fieldName}
-                name={date.fieldName}
-                label={date.fieldLabel}
+                key={elem.fieldName}
+                name={elem.fieldName}
+                label={elem.fieldLabel}
                 type="date"
-                value={date.value}
-                onchange={handleFilterChange}>
+                value={elem.value}
+                onchange={handleFilterChange}
+                variant="label-hidden">
         </lightning-input>
     </template>
-    <template for:each={reportFilterData.string} for:item="string">
+    <template for:each={reportFilterData.string} for:item="elem">
+        <c-sfe-required-label
+                key={elem.fieldName}
+                required={elem.required}
+                field-label={elem.fieldLabel}>
+        </c-sfe-required-label>
         <lightning-input
-                key={string.fieldName}
-                name={string.fieldName}
-                label={string.fieldLabel}
+                key={elem.fieldName}
+                name={elem.fieldName}
+                label={elem.fieldLabel}
                 type="text"
-                value={string.value}
-                onchange={handleFilterChange}>
+                value={elem.value}
+                onchange={handleFilterChange}
+                variant="label-hidden">
         </lightning-input>
     </template>
-    <template for:each={reportFilterData.picklist} for:item="picklist">
+    <template for:each={reportFilterData.picklist} for:item="elem">
+        <c-sfe-required-label
+                key={elem.fieldName}
+                required={elem.required}
+                field-label={elem.fieldLabel}>
+        </c-sfe-required-label>
         <lightning-combobox
-                key={picklist.fieldName}
-                name={picklist.fieldName}
-                label={picklist.fieldLabel}
-                value={picklist.value}
+                key={elem.fieldName}
+                name={elem.fieldName}
+                label={elem.fieldLabel}
+                value={elem.value}
                 placeholder="Select the value"
-                options={picklist.options}
-                onchange={handleFilterChange}>
+                options={elem.options}
+                onchange={handleFilterChange}
+                variant="label-hidden">
         </lightning-combobox>
     </template>
-    <template for:each={reportFilterData.boolean} for:item="boolean">
+    <template for:each={reportFilterData.boolean} for:item="elem">
+        <c-sfe-required-label
+                key={elem.fieldName}
+                required={elem.required}
+                field-label={elem.fieldLabel}>
+        </c-sfe-required-label>
         <lightning-checkbox-group
-                key={boolean.fieldName}
-                name={boolean.fieldName}
-                options={boolean.options}
-                value={boolean.value}
-                onchange={handleFilterChange}>
+                key={elem.fieldName}
+                name={elem.fieldName}
+                options={elem.options}
+                value={elem.value}
+                onchange={handleFilterChange}
+                variant="label-hidden">
         </lightning-checkbox-group>
     </template>
     <lightning-record-edit-form object-api-name={objectApiName} id="createContactForm" >
-        <template for:each={reportFilterData.reference} for:item="reference">
+        <template for:each={reportFilterData.reference} for:item="elem">
+            <c-sfe-required-label
+                    key={elem.fieldName}
+                    required={elem.required}
+                    field-label={elem.fieldLabel}>
+            </c-sfe-required-label>
             <lightning-input-field
-                    key={reference.fieldName}
-                    field-name={reference.fieldName}
-                    value={reference.value}
+                    key={elem.fieldName}
+                    field-name={elem.fieldName}
+                    value={elem.value}
                     variant="label-hidden"
                     onchange={handleFilterChange}>
             </lightning-input-field>
