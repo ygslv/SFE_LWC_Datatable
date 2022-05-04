@@ -16,12 +16,11 @@ public class SFE_ReportFilterController {
                     reportFilter.Field_Type__c,
                     new List<String>(),
                     reportFilterOptionMap.get(reportFilter.Field_Name__c),
-                    true,
+                    reportFilter.Is_Field_Required__c,
                     'Test section'
             ));
         }
 
-        System.debug(reportFilterDataList);
         return reportFilterDataList;
     }
 
