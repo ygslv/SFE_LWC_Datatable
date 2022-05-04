@@ -61,4 +61,40 @@ public class SFE_ReportFilterHelper {
 
         return pickListValues;
     }
+
+    public static Metadata.Layout getPageLayout(String objectName) {
+
+        String objectLabel;
+        String defaultPageLayout;
+
+        List<Schema.DescribeSObjectResult> describeSobjectsResult = Schema.describeSObjects(new List<String>{objectName});
+
+        objectLabel = describeSobjectsResult[0].getLabel();
+        defaultPageLayout = objectLabel + ' Layout';
+
+        String layoutName = String.format('{0}-{1}', new String[]{objectName, defaultPageLayout});
+
+        List<Metadata.Metadata> layouts = Metadata.Operations.retrieve(Metadata.MetadataType.Layout, new List<String> {layoutName});
+        Metadata.Layout layoutMd = (Metadata.Layout)layouts.get(0);
+
+        return layoutMd;
+    }
+
+    public static void generateSectionToFieldListMap(Metadata.Layout layout) {
+
+        Map<String, List<String>> sectionToFieldListMap = new Map<String, List<String>>();
+
+        for (Metadata.LayoutSection section : layout.layoutSections) {
+            List<String> fields = new List<String>();
+            for (Metadata.LayoutColumn column : section.layoutColumns) {
+                if (column.layoutItems != null) {
+                    for (Metadata.LayoutItem item : column.layoutItems) {
+                        fields.add(String.valueOf(item.field));
+                    }
+                }
+            }
+            sectionToFieldListMap.put(String.valueOf(section.label), fields);
+        }
+
+    }
 }
