@@ -2,6 +2,7 @@ import {LightningElement, api, track} from 'lwc';
 
 export default class SfeReportFilter extends LightningElement {
 
+    @api objectApiName
     @api reportFilterData;
     @track reportFilterDataChild;
 
