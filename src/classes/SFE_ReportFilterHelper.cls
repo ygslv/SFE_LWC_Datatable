@@ -80,24 +80,6 @@ public class SFE_ReportFilterHelper {
         return layoutMd;
     }
 
-    public static void generateSectionToFieldListMap(Metadata.Layout layout) {
-
-        Map<String, List<String>> sectionToFieldListMap = new Map<String, List<String>>();
-
-        for (Metadata.LayoutSection section : layout.layoutSections) {
-            List<String> fields = new List<String>();
-            for (Metadata.LayoutColumn column : section.layoutColumns) {
-                if (column.layoutItems != null) {
-                    for (Metadata.LayoutItem item : column.layoutItems) {
-                        fields.add(String.valueOf(item.field));
-                    }
-                }
-            }
-            sectionToFieldListMap.put(String.valueOf(section.label), fields);
-        }
-
-    }
-
     public static Map<String, String> generateFieldToSectionMap(Metadata.Layout layout) {
 
         Map<String, String> sectionToFieldListMap = new Map<String, String>();
