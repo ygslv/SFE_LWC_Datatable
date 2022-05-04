@@ -12,6 +12,7 @@ public class SFE_ReportFilterController {
             reportFilterDataList.add(new ReportFilterData(
                     objectName,
                     reportFilter.Field_Name__c,
+                    reportFilter.Field_Label__c,
                     reportFilter.Field_Type__c,
                     new List<String>(),
                     reportFilterOptionMap.get(reportFilter.Field_Name__c),
@@ -31,6 +32,8 @@ public class SFE_ReportFilterController {
         @AuraEnabled
         public String fieldName;
         @AuraEnabled
+        public String fieldLabel;
+        @AuraEnabled
         public String fieldType;
         @AuraEnabled
         public List<String> value;
@@ -44,6 +47,7 @@ public class SFE_ReportFilterController {
         public ReportFilterData(
                 String objectName,
                 String fieldName,
+                String fieldLabel,
                 String fieldType,
                 List<String> value,
                 List<ReportFilterOption> options,
@@ -52,6 +56,7 @@ public class SFE_ReportFilterController {
         ) {
             this.objectName = objectName;
             this.fieldName = fieldName;
+            this.fieldLabel = fieldLabel;
             this.fieldType = fieldType;
             this.value = value;
             this.options = options;
