@@ -6,6 +6,7 @@ export default class SfeReportFilter extends LightningElement {
     @api section;
     @api reportFilterData;
     @track reportFilterSectionData = {};
+    @track reportFilterResponseData = {};
 
     connectedCallback() {
         this.generateReportFilterSectionData();
@@ -16,12 +17,12 @@ export default class SfeReportFilter extends LightningElement {
         Object.keys(this.reportFilterSectionData).some(prop => {
             const targetElement = this.reportFilterSectionData[prop].find(elem => elem.fieldName === event.target.name ? event.target.name : event.target.fieldName);
             if(targetElement) {
-                targetElement.value = event.target.value;
+                this.reportFilterResponseData[prop] = targetElement;
                 return true;
             }
         })
 
-        this.dispatchEvent(new CustomEvent("filtervaluechange", {detail: this.reportFilterSectionData}));
+        this.dispatchEvent(new CustomEvent("filtervaluechange", {detail: this.reportFilterResponseData}));
     }
 
     generateReportFilterSectionData() {
