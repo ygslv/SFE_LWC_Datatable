@@ -14,12 +14,12 @@ export default class SfeReportFilter extends LightningElement {
     handleFilterChange(event) {
 
         Object.keys(this.reportFilterSectionData).some(prop => {
-            const targetElement = this.reportFilterSectionData[prop].find(elem => elem.fieldName === event.target.fieldName);
-            if (targetElement) {
-                targetElement.value = event.detail.value;
+            const targetElement = this.reportFilterSectionData[prop].find(elem => elem.fieldName === event.target.name ? event.target.name : event.target.fieldName);
+            if(targetElement) {
+                targetElement.value = event.target.value;
                 return true;
             }
-        });
+        })
 
         this.dispatchEvent(new CustomEvent("filtervaluechange", {detail: this.reportFilterSectionData}));
     }
@@ -29,8 +29,8 @@ export default class SfeReportFilter extends LightningElement {
             this.reportFilterData[type].forEach(field => {
                 if (field.section === this.section) {
                     Object.keys(this.reportFilterSectionData).includes(type) ?
-                        this.reportFilterSectionData[type].push(field) :
-                        this.reportFilterSectionData[type] = [field]
+                        this.reportFilterSectionData[type].push({...field}) :
+                        this.reportFilterSectionData[type] = [{...field}]
                 }
             })
         })
