@@ -7,7 +7,7 @@
         </c-sfe-required-label>
         <lightning-input
                 key={elem.fieldName}
-                name={elem.fieldName}
+                field-name={elem.fieldName}
                 label={elem.fieldLabel}
                 type="date"
                 value={elem.value}
@@ -23,7 +23,7 @@
         </c-sfe-required-label>
         <lightning-input
                 key={elem.fieldName}
-                name={elem.fieldName}
+                field-name={elem.fieldName}
                 label={elem.fieldLabel}
                 type="text"
                 value={elem.value}
@@ -39,7 +39,7 @@
         </c-sfe-required-label>
         <lightning-combobox
                 key={elem.fieldName}
-                name={elem.fieldName}
+                field-name={elem.fieldName}
                 label={elem.fieldLabel}
                 value={elem.value}
                 placeholder="Select the value"
@@ -56,9 +56,10 @@
         </c-sfe-required-label>
         <lightning-checkbox-group
                 key={elem.fieldName}
-                name={elem.fieldName}
+                field-name={elem.fieldName}
                 options={elem.options}
                 value={elem.value}
+                new-test-tag
                 onchange={handleFilterChange}
                 variant="label-hidden">
         </lightning-checkbox-group>
