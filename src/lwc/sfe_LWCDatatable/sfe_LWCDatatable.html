@@ -12,12 +12,12 @@
             <lightning-accordion allow-multiple-sections-open>
                 <template for:each={sections} for:item="section">
                     <lightning-accordion-section key={section} name={section} label={section}>
-                        <c-sfe_-report-filter
+                        <c-sfe_-report-filters
                                 object-api-name={objectApiName}
                                 section={section}
                                 report-filter-data={reportFilterData}
                                 onfiltervaluechange={handleFilterValueChange}>
-                        </c-sfe_-report-filter>
+                        </c-sfe_-report-filters>
                     </lightning-accordion-section>
                 </template>
             </lightning-accordion>
