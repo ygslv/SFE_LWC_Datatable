@@ -9,14 +9,15 @@
 
     <c-sfe_-dynamic-modal modal-header={label.modalHeader} show-modal={isFilterModalOpen} onclosedialog={handleFilterCancel}>
         <span slot="content">
-            <lightning-accordion active-section-name="Sections">
+            <lightning-accordion
+                allow-multiple-sections-open>
                 <template for:each={sections} for:item="section">
                     <lightning-accordion-section key={section} name={section} label={section}>
                         <c-sfe_-report-filter
-                                object-api-name={objectApiName}
-                                section={section}
-                                report-filter-data={reportFilterData}
-                                onfiltervaluechange={handleFilterValueChange}>
+                            object-api-name={objectApiName}
+                            section={section}
+                            report-filter-data={reportFilterData}
+                            onfiltervaluechange={handleFilterValueChange}>
                         </c-sfe_-report-filter>
                     </lightning-accordion-section>
                 </template>
